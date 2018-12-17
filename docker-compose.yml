@@ -1,11 +1,11 @@
-app:
-  build: .
-  command: npm test -- --host selenium
-  links:
-    - selenium
-
-selenium:
-  image: selenium/standalone-chrome
-  expose:
-    - "4444"
-  log_driver: "none"
+version: "3"
+services:
+  app:
+    build: .
+    command: ./wait-for selenium:4444 -- npm test -- --host selenium
+    depends_on:
+      - selenium
+  selenium:
+    image: selenium/standalone-chrome
+    expose:
+      - "4444"
