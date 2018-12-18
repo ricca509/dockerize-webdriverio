@@ -5,7 +5,10 @@ exports.config = {
     maxInstances: 10,
     capabilities: [{
         maxInstances: 5,
-        browserName: 'chrome'
+        browserName: 'chrome',
+        chromeOptions: {
+            args: ["headless"]
+        }
     }],
     sync: true,
     logLevel: 'error',
