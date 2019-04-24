@@ -4,7 +4,7 @@
   "description": "A dockerized environment for webdriverIO tests",
   "main": "index.js",
   "scripts": {
-    "test": "wdio wdio.conf"
+    "test": "wdio wdio.conf.js"
   },
   "repository": "https://github.com/ricca509/dockerize-webdriverio",
   "keywords": [
@@ -14,8 +14,12 @@
   "author": "Riccardo Coppola <ricca509@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^3.0.2",
-    "wdio-mocha-framework": "^0.4.0",
-    "webdriverio": "^4.2.11"
+    "@wdio/cli": "^5.7.15",
+    "@wdio/local-runner": "^5.7.15",
+    "@wdio/mocha-framework": "^5.7.14",
+    "@wdio/sync": "^5.7.13",
+    "mocha": "^6.1.4",
+    "wdio-mocha-framework": "^0.6.4",
+    "webdriverio": "^5.7.15"
   }
 }

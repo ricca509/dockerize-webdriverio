@@ -1,4 +1,5 @@
 exports.config = {
+    runner: 'local',
     specs: [
         './test/**/*.js'
     ],
@@ -7,10 +8,9 @@ exports.config = {
         maxInstances: 5,
         browserName: 'chrome'
     }],
-    sync: true,
-    logLevel: 'error',
-    coloredLogs: true,
     screenshotPath: './errorShots/',
+    logLevel: 'warn',
+    bail: 0,
     baseUrl: 'http://localhost',
     waitforTimeout: 10000,
     connectionRetryTimeout: 90000,
