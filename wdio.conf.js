@@ -9,7 +9,7 @@ exports.config = {
         browserName: 'chrome'
     }],
     screenshotPath: './errorShots/',
-    logLevel: 'warn',
+    logLevel: 'trace',
     bail: 0,
     baseUrl: 'http://localhost',
     waitforTimeout: 10000,
@@ -17,6 +17,7 @@ exports.config = {
     connectionRetryCount: 3,
     framework: 'mocha',
     mochaOpts: {
-        ui: 'bdd'
+        ui: 'bdd',
+        reporter: 'spec'
     }
 }

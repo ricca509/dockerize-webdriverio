@@ -1,18 +1,26 @@
 version: "3"
 services:
+  app:
+    image: integration-tests:${BUILD_COUNTER:-0}
+    command: npm start
+    ports:
+      - "8000:8000"
+
   tests:
     image: integration-tests:${BUILD_COUNTER:-0}
     command: ["./wait-for-it.sh", "selenium-hub:4444", "--", "npm", "test", "--", "--hostname", "selenium-hub"]
     depends_on:
       - selenium-hub
+      - app
     environment:
-      - HOST=selenium-hub
-      - E2E_TEST_URL=tests:3003
+      - BASE_URL=http://app:8000
+
   selenium-hub:
     image: selenium/hub:3.141.59-neon
     container_name: selenium-hub
     expose:
       - "4444"
+
   chrome:
     image: selenium/node-chrome:3.141.59-neon
     volumes:
@@ -20,11 +28,8 @@ services:
     depends_on:
       - selenium-hub
     links:
-      - tests
+      - app
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
-      - CHROME_VERSION=62.0.3202.94
-    logging:
-      driver: none
-
+      - CHROME_VERSION=google-chrome-stable

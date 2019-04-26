@@ -4,7 +4,9 @@
   "description": "A dockerized environment for webdriverIO tests",
   "main": "index.js",
   "scripts": {
-    "test": "wdio wdio.conf.js"
+    "start": "node src/index.js",
+    "test": "wdio wdio.conf.js",
+    "e2e:docker": "./start.sh"
   },
   "repository": "https://github.com/ricca509/dockerize-webdriverio",
   "keywords": [
