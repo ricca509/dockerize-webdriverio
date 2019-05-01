@@ -1,6 +1,6 @@
 version: "3"
 services:
-  app:
+  app.local:
     image: integration-tests:${BUILD_COUNTER:-0}
     command: npm start
     ports:
@@ -11,13 +11,14 @@ services:
     command: ["./wait-for-it.sh", "selenium-hub:4444", "--", "npm", "test", "--", "--hostname", "selenium-hub"]
     depends_on:
       - selenium-hub
-      - app
+      - app.local
     environment:
-      - BASE_URL=http://app:8000
+      - BASE_URL=http://app.local:8000
 
-  selenium-hub:
+  selenium-hub:    
     image: selenium/hub:3.141.59-neon
-    container_name: selenium-hub
+    volumes:
+      - /dev/shm:/dev/shm
     expose:
       - "4444"
 
@@ -27,8 +28,7 @@ services:
       - /dev/shm:/dev/shm
     depends_on:
       - selenium-hub
-    links:
-      - app
+      - app.local
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
